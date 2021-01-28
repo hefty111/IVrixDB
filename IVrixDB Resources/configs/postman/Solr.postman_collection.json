@@ -1,0 +1,773 @@
+{
+	"info": {
+		"_postman_id": "f3fe1196-4c9d-42ac-9517-bba406972d78",
+		"name": "Solr",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Collection",
+			"item": [
+				{
+					"name": "DELETE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8983/solr/admin/collections?action=DELETE&name=___",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8983",
+							"path": [
+								"solr",
+								"admin",
+								"collections"
+							],
+							"query": [
+								{
+									"key": "action",
+									"value": "DELETE"
+								},
+								{
+									"key": "name",
+									"value": "___"
+								}
+							]
+						},
+						"description": "Deletes collection"
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8983/solr/admin/collections?action=CREATE&router.name=compositeId&collection.configName=___&numShards=2&maxShardsPerNode=1&name=___",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8983",
+							"path": [
+								"solr",
+								"admin",
+								"collections"
+							],
+							"query": [
+								{
+									"key": "action",
+									"value": "CREATE"
+								},
+								{
+									"key": "router.name",
+									"value": "compositeId"
+								},
+								{
+									"key": "collection.configName",
+									"value": "___"
+								},
+								{
+									"key": "numShards",
+									"value": "2"
+								},
+								{
+									"key": "maxShardsPerNode",
+									"value": "1"
+								},
+								{
+									"key": "name",
+									"value": "___"
+								}
+							]
+						},
+						"description": "cerates a new collection"
+					},
+					"response": []
+				},
+				{
+					"name": "EMPTY",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<delete><query>*:*</query></delete>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8983/solr/{{collection_name}}/update?commit=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8983",
+							"path": [
+								"solr",
+								"{{collection_name}}",
+								"update"
+							],
+							"query": [
+								{
+									"key": "commit",
+									"value": "true"
+								}
+							]
+						},
+						"description": "Empties out a collection"
+					},
+					"response": []
+				},
+				{
+					"name": "INDEX DATA",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/C:/Users/Ivri Faitelson/Work/ISolar/Data/mock-logs-8000000.json"
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8983/solr/{{collection_name}}/update?commit=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8983",
+							"path": [
+								"solr",
+								"{{collection_name}}",
+								"update"
+							],
+							"query": [
+								{
+									"key": "commit",
+									"value": "true"
+								}
+							]
+						},
+						"description": "uploads data into a collection"
+					},
+					"response": []
+				},
+				{
+					"name": "COMMIT DATA",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8983/solr/{{collection_name}}/update?commit=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8983",
+							"path": [
+								"solr",
+								"{{collection_name}}",
+								"update"
+							],
+							"query": [
+								{
+									"key": "commit",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET CLUSTER STATUS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8983/solr/admin/collections?action=CLUSTERSTATUS",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8983",
+							"path": [
+								"solr",
+								"admin",
+								"collections"
+							],
+							"query": [
+								{
+									"key": "action",
+									"value": "CLUSTERSTATUS"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Core",
+			"item": []
+		},
+		{
+			"name": "Configset",
+			"item": [
+				{
+					"name": "CREATE",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/octet-stream",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/C:/Users/Ivri Faitelson/Work/IVrixDB/Repos/IVrixDB/IVrixDB Resources/configs/ivrix_config/ivrix_configset.zip"
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8983/solr/admin/configs?action=UPLOAD&name=ivrix_configset",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8983",
+							"path": [
+								"solr",
+								"admin",
+								"configs"
+							],
+							"query": [
+								{
+									"key": "action",
+									"value": "UPLOAD"
+								},
+								{
+									"key": "name",
+									"value": "ivrix_configset"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8983/solr/admin/configs?action=DELETE&name=ivrix_configset",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8983",
+							"path": [
+								"solr",
+								"admin",
+								"configs"
+							],
+							"query": [
+								{
+									"key": "action",
+									"value": "DELETE"
+								},
+								{
+									"key": "name",
+									"value": "ivrix_configset"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LIST ALL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8983/solr/admin/configs?action=LIST&wt=json",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8983",
+							"path": [
+								"solr",
+								"admin",
+								"configs"
+							],
+							"query": [
+								{
+									"key": "action",
+									"value": "LIST"
+								},
+								{
+									"key": "wt",
+									"value": "json"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Streaming",
+			"item": [
+				{
+					"name": "Search",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "expr",
+									"value": "search({{collection_name}},ivrix=true,zkHost=\"localhost:9983\",qt=\"/export\",q=\"*:*\", fl=\"_raw,_time\",sort=\"_time desc\")",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8983/solr/{{collection_name}}/stream",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8983",
+							"path": [
+								"solr",
+								"{{collection_name}}",
+								"stream"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search (Limited)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "expr",
+									"value": "search({{collection_name}},zkHost=\"localhost:9983\",rows=10,q=\"*:*\", fl=\"id,event\",sort=\"id asc\")",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8983/solr/{{collection_name}}/stream",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8983",
+							"path": [
+								"solr",
+								"{{collection_name}}",
+								"stream"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Parallel Search w/ Rollup",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "expr",
+									"value": "parallel({{collection_name}},rollup(search({{collection_name}},qt=\"/export\",q=\"*:*\", fl=\"id\",sort=\"id asc\",partitionKeys=\"id\"),over=\"id\",count(*)),workers=\"2\",zkHost=\"localhost:9983\",sort=\"id asc\")",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8983/solr/{{collection_name}}/stream",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8983",
+							"path": [
+								"solr",
+								"{{collection_name}}",
+								"stream"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Parallel Search",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "expr",
+									"value": "parallel({{collection_name}},search({{collection_name}},qt=\"/export\",q=\"*:*\", fl=\"id\",sort=\"id asc\",partitionKeys=\"id\"),workers=\"2\",zkHost=\"localhost:9983\",sort=\"id asc\")",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8983/solr/{{collection_name}}/stream",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8983",
+							"path": [
+								"solr",
+								"{{collection_name}}",
+								"stream"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ATTACH/DETACH TESTING PLAYGROUND",
+			"item": [
+				{
+					"name": "DETACH REPLICA",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8983/solr/admin/collections?action=DELETEREPLICA&deleteInstanceDir=false&deleteIndex=false&collection={{collection_name}}&shard=shard2&replica=core_node29&deleteDataDir=false&onlyIfDown=false",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8983",
+							"path": [
+								"solr",
+								"admin",
+								"collections"
+							],
+							"query": [
+								{
+									"key": "action",
+									"value": "DELETEREPLICA"
+								},
+								{
+									"key": "deleteInstanceDir",
+									"value": "false"
+								},
+								{
+									"key": "deleteIndex",
+									"value": "false"
+								},
+								{
+									"key": "collection",
+									"value": "{{collection_name}}"
+								},
+								{
+									"key": "shard",
+									"value": "shard2"
+								},
+								{
+									"key": "replica",
+									"value": "core_node29"
+								},
+								{
+									"key": "deleteDataDir",
+									"value": "false"
+								},
+								{
+									"key": "onlyIfDown",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DETACH COLLECTION",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8983/solr/admin/collections?action=DELETE&name={{collection_name}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8983",
+							"path": [
+								"solr",
+								"admin",
+								"collections"
+							],
+							"query": [
+								{
+									"key": "action",
+									"value": "DELETE"
+								},
+								{
+									"key": "name",
+									"value": "{{collection_name}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ATTACH COLLECTION",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8983/solr/admin/collections?action=CREATE&router.name=implicit&name={{collection_name}}&shards={{shard_list}}&collection.configName=ivrix_configset&createNodeSet=empty",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8983",
+							"path": [
+								"solr",
+								"admin",
+								"collections"
+							],
+							"query": [
+								{
+									"key": "action",
+									"value": "CREATE"
+								},
+								{
+									"key": "router.name",
+									"value": "implicit"
+								},
+								{
+									"key": "name",
+									"value": "{{collection_name}}"
+								},
+								{
+									"key": "shards",
+									"value": "{{shard_list}}"
+								},
+								{
+									"key": "collection.configName",
+									"value": "ivrix_configset"
+								},
+								{
+									"key": "createNodeSet",
+									"value": "empty"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ATTACH REPLICA",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8983/solr/admin/collections?action=ADDREPLICA&collection={{collection_name}}&shard=shard2&property.dataDir=../c2_shard2_replica_n2/data&collection.configName=ivrix_configset&createNodeSet=10.0.75.1:7574_solr&property.name=c2_shard2_replica_n2&waitForFinalState=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8983",
+							"path": [
+								"solr",
+								"admin",
+								"collections"
+							],
+							"query": [
+								{
+									"key": "action",
+									"value": "ADDREPLICA"
+								},
+								{
+									"key": "collection",
+									"value": "{{collection_name}}"
+								},
+								{
+									"key": "shard",
+									"value": "shard2"
+								},
+								{
+									"key": "property.dataDir",
+									"value": "../c2_shard2_replica_n2/data"
+								},
+								{
+									"key": "collection.configName",
+									"value": "ivrix_configset"
+								},
+								{
+									"key": "createNodeSet",
+									"value": "10.0.75.1:7574_solr"
+								},
+								{
+									"key": "property.name",
+									"value": "c2_shard2_replica_n2"
+								},
+								{
+									"key": "waitForFinalState",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "REMOVE NOT BOOTED REPLICA",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8983/solr/admin/cores?action=UNLOAD&core=c1_shard2_replica_n2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8983",
+							"path": [
+								"solr",
+								"admin",
+								"cores"
+							],
+							"query": [
+								{
+									"key": "action",
+									"value": "UNLOAD"
+								},
+								{
+									"key": "core",
+									"value": "c1_shard2_replica_n2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DETACH SHARD",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}

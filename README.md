@@ -1,116 +1,54 @@
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one or more
-    contributor license agreements.  See the NOTICE file distributed with
-    this work for additional information regarding copyright ownership.
-    The ASF licenses this file to You under the Apache License, Version 2.0
-    the "License"); you may not use this file except in compliance with
-    the License.  You may obtain a copy of the License at
-
-        http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
- -->
-
-# Apache Lucene and Solr
-
-Apache Lucene is a high-performance, full featured text search engine library
-written in Java.
-
-Apache Solr is an enterprise search platform written using Apache Lucene.
-Major features include full-text search, index replication and sharding, and
-result faceting and highlighting.
+###### Copyright Notice
+<p>
+IVrixDB ©Ivri Faitelson 2020<br>
+IVrixDB was developed by Ivri Faitelson and is a proprietary software product owned by Ivri Faitelson.<br>
+All rights reserved.
+</p>
 
 
-[![Build Status](https://builds.apache.org/view/L/view/Lucene/job/Lucene-Artifacts-master/badge/icon?subject=Lucene)](https://builds.apache.org/view/L/view/Lucene/job/Lucene-Artifacts-master/) [![Build Status](https://builds.apache.org/view/L/view/Lucene/job/Solr-Artifacts-master/badge/icon?subject=Solr)](https://builds.apache.org/view/L/view/Lucene/job/Solr-Artifacts-master/)
+# IVrixDB 
+IVrixDB is a schema-less search application for time-series data at scale.
+It is built upon Solr, an enterprise search platform written on top of Lucene,
+which is a high-performance, full featured text search engine library.
+IVrixDB's main feature is Search-Time Field Extraction, where it can run search and analytics
+on Solr Fields that do not exist in the schema.
 
+IVrixDB provides:
+- A schema-less time-series index
+- Time-based data retention
+- Search-Time Field Extraction
+- full-text search and analytics
+- cloud support
+- fault-tolerant architecture
+- hardware resource management
 
-## Online Documentation
+IVrixDB is at the stage of an advanced proof-of-concept, and all the
+features above have been successfully implemented with scale in mind.
 
-This README file only contains basic setup instructions.  For more
-comprehensive documentation, visit:
+Even though the code is embedded within Solr (for development ease), IVrixDB is an extension of Solr.
+It is built upon Solr’s extensible plug-in architecture. Solr's existing functionality was not impacted,
+and there are no degradation in performance or scalability compared to Solr.
 
-- Lucene: <http://lucene.apache.org/core/documentation.html>
-- Solr: <http://lucene.apache.org/solr/guide/>
+The code can be located at package "org.apache.solr.ivrixdb" (directory path "IVrixDB/solr/core/src/java/org/apache/solr/ivrixdb/"),
+and the resources containing IVrixDB documents, tools, configurations, and more can be found in the "IVrixDB Resources" folder.
 
-## Building Lucene/Solr
+To further understand IVrixDB's features, please read the "Key Features In-Depth Breakdown" document.
 
-(You do not need to do this if you downloaded a pre-built package.)
+To further understand the current architecture and its guiding principles, please read the "IVrixDB Architecture" document.
 
-Lucene and Solr are built using [Apache Ant](http://ant.apache.org/).  To build
-Lucene and Solr, run:
+To know what was not fully implemented and what are the current issues in the project,
+please read the "Disclaimers, Warnings, and Bugs" document.
 
-`ant compile`
+To start using this application, please read the "Quick Start" document.
 
-If you see an error about Ivy missing while invoking Ant (e.g., `.ant/lib does
-not exist`), run `ant ivy-bootstrap` and retry.
+To begin development, please read the documents in the order presented:
+"IVrixDB Architecture", "Disclaimers, Warnings, and Bugs", "Quick Start", and "IVrixDB Tests".
 
-Sometimes you may face issues with Ivy (e.g., an incompletely downloaded artifact).
-Cleaning up the Ivy cache and retrying is a workaround for most of such issues: 
+To contact me, please email "ivrift@icloud.com".
 
-`rm -rf ~/.ivy2/cache`
-
-The Solr server can then be packaged and prepared for startup by running the
-following command from the `solr/` directory:
-
-`ant server`
-
-## Running Solr
-
-After [building Solr](#building-lucene-solr), the server can be started using
-the `bin/solr` control scripts.  Solr can be run in either standalone or
-distributed (SolrCloud mode).
-
-To run Solr in standalone mode, run the following command from the `solr/`
-directory:
-
-`bin/solr start`
-
-To run Solr in SolrCloud mode, run the following command from the `solr/`
-directory:
-
-`bin/solr start -c`
-
-The `bin/solr` control script allows heavy modification of the started Solr.
-Common options are described in some detail in solr/README.txt.  For an
-exhaustive treatment of options, run `bin/solr start -h` from the `solr/`
-directory.
-
-## Development/IDEs
-
-Ant can be used to generate project files compatible with most common IDEs.
-Run the ant command corresponding to your IDE of choice before attempting to
-import Lucene/Solr.
-
-- *Eclipse* - `ant eclipse` (See [this](https://wiki.apache.org/solr/HowToConfigureEclipse) for details)
-- *IntelliJ* - `ant idea` (See [this](https://wiki.apache.org/lucene-java/HowtoConfigureIntelliJ) for details)
-- *Netbeans* - `ant netbeans` (See [this](https://wiki.apache.org/lucene-java/HowtoConfigureNetbeans) for details)
-
-
-## Running Tests
-
-The standard test suite can be run with the command:
-
-`ant test`
-
-Like Solr itself, the test-running can be customized or tailored in a number or
-ways.  For an exhaustive discussion of the options available, run:
-
-`ant test-help`
-
-## Contributing
-
-Please review the [Contributing to Solr
-Guide](https://wiki.apache.org/solr/HowToContribute) for information on
-contributing.
-
-## Discussion and Support
-
-- [Users Mailing List](http://lucene.apache.org/solr/community.html#solr-user-list-solr-userluceneapacheorg)
-- [Developers Mailing List](http://lucene.apache.org/solr/community.html#developer-list-devluceneapacheorg)
-- [Lucene Issue Tracker](https://issues.apache.org/jira/browse/LUCENE)
-- [Solr Issue Tracker](https://issues.apache.org/jira/browse/SOLR)
-- IRC: `#solr` and `#solr-dev` on freenode.net
+## P.S.
+I apologize if any part of the documentation or code is unclear. College was creeping up on me, and
+I was feeling rushed. However, I managed to build a stable and advanced POC that can create and search
+IVrixDB Indexes in the production environment of SolrCloud, and to fully write documentation and JavaDoc.
+Additionally, I worked very hard to keep the code clean and of high-quality, though some parts of the code do not
+live up to my standards. Over time, I will clean up both code and documentation. Please feel free to email me at any time.

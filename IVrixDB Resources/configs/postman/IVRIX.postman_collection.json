@@ -1,0 +1,1778 @@
+{
+	"info": {
+		"_postman_id": "7e6a47c4-8aea-4c7b-a9cc-4167093d28d6",
+		"name": "IVRIX",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Setup",
+			"item": [
+				{
+					"name": "ADD IVRIX CONFIGSET",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/octet-stream",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/C:/Users/Ivri Faitelson/Work/IVrixDB/Repos/IVrixDB/solr/server/solr/configsets/zipped configs/ivrix_configset.zip"
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8983/solr/admin/configs?action=UPLOAD&name=ivrix_configset",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8983",
+							"path": [
+								"solr",
+								"admin",
+								"configs"
+							],
+							"query": [
+								{
+									"key": "action",
+									"value": "UPLOAD"
+								},
+								{
+									"key": "name",
+									"value": "ivrix_configset"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE IVRIX CONTROLLER COLLECTION",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8983/solr/admin/collections?action=CREATE&router.name=implicit&collection.configName=ivrix_configset&maxShardsPerNode=1&name=ivrixdb&createNodeSet=EMPTY&shards=7574,8983",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8983",
+							"path": [
+								"solr",
+								"admin",
+								"collections"
+							],
+							"query": [
+								{
+									"key": "action",
+									"value": "CREATE"
+								},
+								{
+									"key": "router.name",
+									"value": "implicit"
+								},
+								{
+									"key": "collection.configName",
+									"value": "ivrix_configset"
+								},
+								{
+									"key": "maxShardsPerNode",
+									"value": "1"
+								},
+								{
+									"key": "name",
+									"value": "ivrixdb"
+								},
+								{
+									"key": "createNodeSet",
+									"value": "EMPTY"
+								},
+								{
+									"key": "shards",
+									"value": "7574,8983"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE IVRIX CONTROLLER REPLICA ON NODE 8983",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8983/solr/admin/collections?action=CREATESHARD&collection=ivrixdb&shard=8983&nrtReplicas=1&createNodeSet=10.0.75.1:8983_solr",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8983",
+							"path": [
+								"solr",
+								"admin",
+								"collections"
+							],
+							"query": [
+								{
+									"key": "action",
+									"value": "CREATESHARD"
+								},
+								{
+									"key": "collection",
+									"value": "ivrixdb"
+								},
+								{
+									"key": "shard",
+									"value": "8983"
+								},
+								{
+									"key": "nrtReplicas",
+									"value": "1"
+								},
+								{
+									"key": "createNodeSet",
+									"value": "10.0.75.1:8983_solr"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE IVRIX CONTROLLER REPLICA ON NODE 7574",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8983/solr/admin/collections?action=CREATESHARD&collection=ivrixdb&shard=7574&nrtReplicas=1&createNodeSet=10.0.75.1:7574_solr",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8983",
+							"path": [
+								"solr",
+								"admin",
+								"collections"
+							],
+							"query": [
+								{
+									"key": "action",
+									"value": "CREATESHARD"
+								},
+								{
+									"key": "collection",
+									"value": "ivrixdb"
+								},
+								{
+									"key": "shard",
+									"value": "7574"
+								},
+								{
+									"key": "nrtReplicas",
+									"value": "1"
+								},
+								{
+									"key": "createNodeSet",
+									"value": "10.0.75.1:7574_solr"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "CREATE INDEX",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8983/solr/ivrixdb/admin?adminAction=CREATE_INDEX&indexName=_default",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8983",
+							"path": [
+								"solr",
+								"ivrixdb",
+								"admin"
+							],
+							"query": [
+								{
+									"key": "adminAction",
+									"value": "CREATE_INDEX"
+								},
+								{
+									"key": "indexName",
+									"value": "_default"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE INDEX",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8983/solr/ivrixdb/admin?adminAction=DELETE_INDEX&indexName=_default",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8983",
+							"path": [
+								"solr",
+								"ivrixdb",
+								"admin"
+							],
+							"query": [
+								{
+									"key": "adminAction",
+									"value": "DELETE_INDEX"
+								},
+								{
+									"key": "indexName",
+									"value": "_default"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LIST ALL INDEXES",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8983/solr/ivrixdb/admin?adminAction=LIST_INDEXES",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8983",
+							"path": [
+								"solr",
+								"ivrixdb",
+								"admin"
+							],
+							"query": [
+								{
+									"key": "adminAction",
+									"value": "LIST_INDEXES"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Indexing",
+			"item": [
+				{
+					"name": "(DIRECTLY INTO NODE 8983) INDEX EVENTS",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/C:/Users/Ivri Faitelson/Work/IVrixDB/Test Data/split/test-documents-8030000-False-1.json"
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8983/solr/ivrixdb/indexEvents?indexName=_default",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8983",
+							"path": [
+								"solr",
+								"ivrixdb",
+								"indexEvents"
+							],
+							"query": [
+								{
+									"key": "indexName",
+									"value": "_default"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "(DIRECTLY INTO NODE 7574) INDEX EVENTS",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/C:/Users/Ivri Faitelson/Work/IVrixDB/Test Data/split/test-documents-8030000-False-2.json"
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7574/solr/ivrixdb/indexEvents?indexName=_default",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7574",
+							"path": [
+								"solr",
+								"ivrixdb",
+								"indexEvents"
+							],
+							"query": [
+								{
+									"key": "indexName",
+									"value": "_default"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LOAD-BALANCED INDEXING OF EVENTS",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/C:/Users/Ivri Faitelson/Work/IVrixDB/Test Data/single/test-documents-8030000-False.json"
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8983/solr/ivrixdb/indexEvents?indexName=_default&toLoadBalance=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8983",
+							"path": [
+								"solr",
+								"ivrixdb",
+								"indexEvents"
+							],
+							"query": [
+								{
+									"key": "indexName",
+									"value": "_default"
+								},
+								{
+									"key": "toLoadBalance",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Searching",
+			"item": [
+				{
+					"name": "CREATE SEARCH JOB (ALL)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8983/solr/ivrixdb/searchJob?action=CREATE_JOB&expr=search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time)",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8983",
+							"path": [
+								"solr",
+								"ivrixdb",
+								"searchJob"
+							],
+							"query": [
+								{
+									"key": "action",
+									"value": "CREATE_JOB"
+								},
+								{
+									"key": "expr",
+									"value": "search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time)"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE SEARCH JOB (RANGED)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8983/solr/ivrixdb/searchJob?action=CREATE_JOB&expr=search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time)&earliest=2002-05-02T01:23:25Z&latest=2004-05-22T02:46:40Z",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8983",
+							"path": [
+								"solr",
+								"ivrixdb",
+								"searchJob"
+							],
+							"query": [
+								{
+									"key": "action",
+									"value": "CREATE_JOB"
+								},
+								{
+									"key": "expr",
+									"value": "search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time)"
+								},
+								{
+									"key": "earliest",
+									"value": "2002-05-02T01:23:25Z"
+								},
+								{
+									"key": "latest",
+									"value": "2004-05-22T02:46:40Z"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POLL EVENTS (NO TIMELINE BUCKETS SELECTED)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8983/solr/ivrixdb/searchJob?action=GET_EVENTS&ID={{search_job}}&offset=0&size=20",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8983",
+							"path": [
+								"solr",
+								"ivrixdb",
+								"searchJob"
+							],
+							"query": [
+								{
+									"key": "action",
+									"value": "GET_EVENTS"
+								},
+								{
+									"key": "ID",
+									"value": "{{search_job}}"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POLL EVENTS (SELECTED TIMELINE BUCKETS)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8983/solr/ivrixdb/searchJob?action=GET_EVENTS&ID={{search_job}}&offset=0&size=20&earliest=2010-08-01T00:00Z&latest=2010-12-01T00:00Z",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8983",
+							"path": [
+								"solr",
+								"ivrixdb",
+								"searchJob"
+							],
+							"query": [
+								{
+									"key": "action",
+									"value": "GET_EVENTS"
+								},
+								{
+									"key": "ID",
+									"value": "{{search_job}}"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "20"
+								},
+								{
+									"key": "earliest",
+									"value": "2010-08-01T00:00Z"
+								},
+								{
+									"key": "latest",
+									"value": "2010-12-01T00:00Z"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POLL RESULTS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8983/solr/ivrixdb/searchJob?action=GET_RESULTS&ID={{search_job}}&offset=0&size=20",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8983",
+							"path": [
+								"solr",
+								"ivrixdb",
+								"searchJob"
+							],
+							"query": [
+								{
+									"key": "action",
+									"value": "GET_RESULTS"
+								},
+								{
+									"key": "ID",
+									"value": "{{search_job}}"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POLL TIMELINE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8983/solr/ivrixdb/searchJob?action=GET_TIMELINE&ID={{search_job}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8983",
+							"path": [
+								"solr",
+								"ivrixdb",
+								"searchJob"
+							],
+							"query": [
+								{
+									"key": "action",
+									"value": "GET_TIMELINE"
+								},
+								{
+									"key": "ID",
+									"value": "{{search_job}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POLL FIELD SUMMARIES",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8983/solr/ivrixdb/searchJob?action=GET_FIELD_SUMMARIES&ID={{search_job}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8983",
+							"path": [
+								"solr",
+								"ivrixdb",
+								"searchJob"
+							],
+							"query": [
+								{
+									"key": "action",
+									"value": "GET_FIELD_SUMMARIES"
+								},
+								{
+									"key": "ID",
+									"value": "{{search_job}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "TESTS (refer to tests document for details)",
+			"item": [
+				{
+					"name": "1",
+					"item": [
+						{
+							"name": "1D",
+							"item": [
+								{
+									"name": "(NODE 8983) INDEX EVENTS (LB)",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "file",
+											"file": {
+												"src": "/C:/Users/Ivri Faitelson/Work/IVrixDB/Test Data/split/test-documents-8030000-False-1.json"
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8983/solr/ivrixdb/indexEvents?indexName=_default&toLoadBalance=true",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8983",
+											"path": [
+												"solr",
+												"ivrixdb",
+												"indexEvents"
+											],
+											"query": [
+												{
+													"key": "indexName",
+													"value": "_default"
+												},
+												{
+													"key": "toLoadBalance",
+													"value": "true"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "(NODE 7574) INDEX EVENTS (LB)",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "file",
+											"file": {
+												"src": "/C:/Users/Ivri Faitelson/Work/IVrixDB/Test Data/split/test-documents-8030000-False-2.json"
+											}
+										},
+										"url": {
+											"raw": "http://localhost:7574/solr/ivrixdb/indexEvents?indexName=_default&toLoadBalance=true",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "7574",
+											"path": [
+												"solr",
+												"ivrixdb",
+												"indexEvents"
+											],
+											"query": [
+												{
+													"key": "indexName",
+													"value": "_default"
+												},
+												{
+													"key": "toLoadBalance",
+													"value": "true"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "1A",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "file",
+									"file": {
+										"src": "/C:/Users/Ivri Faitelson/Work/IVrixDB/Test Data/single/test-documents-8030000-False.json"
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8983/solr/ivrixdb/indexEvents?indexName=_default",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8983",
+									"path": [
+										"solr",
+										"ivrixdb",
+										"indexEvents"
+									],
+									"query": [
+										{
+											"key": "indexName",
+											"value": "_default"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1B",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "file",
+									"file": {
+										"src": "/C:/Users/Ivri Faitelson/Work/IVrixDB/Test Data/single/test-documents-8030000-False.json"
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8983/solr/ivrixdb/indexEvents?indexName=_default&toLoadBalance=true",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8983",
+									"path": [
+										"solr",
+										"ivrixdb",
+										"indexEvents"
+									],
+									"query": [
+										{
+											"key": "indexName",
+											"value": "_default"
+										},
+										{
+											"key": "toLoadBalance",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1C",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "file",
+									"file": {
+										"src": "/C:/Users/Ivri Faitelson/Work/IVrixDB/Test Data/single/test-documents-8030000-False.json"
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8983/solr/ivrixdb/indexEvents?indexName=_default&toLoadBalance=true",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8983",
+									"path": [
+										"solr",
+										"ivrixdb",
+										"indexEvents"
+									],
+									"query": [
+										{
+											"key": "indexName",
+											"value": "_default"
+										},
+										{
+											"key": "toLoadBalance",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1E",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "file",
+									"file": {
+										"src": "/C:/Users/Ivri Faitelson/Work/IVrixDB/Test Data/single/test-documents-8030000-False.json"
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8983/solr/ivrixdb/indexEvents?indexName=_default&toLoadBalance=true",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8983",
+									"path": [
+										"solr",
+										"ivrixdb",
+										"indexEvents"
+									],
+									"query": [
+										{
+											"key": "indexName",
+											"value": "_default"
+										},
+										{
+											"key": "toLoadBalance",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "2",
+					"item": [
+						{
+							"name": "2B",
+							"item": [
+								{
+									"name": "Test1",
+									"item": [
+										{
+											"name": "HOT search",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "http://localhost:8983/solr/ivrixdb/searchJob?action=CREATE_JOB&expr=search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time)&earliest=2010-12-22T01:23:25Z&latest=2010-12-29T02:46:40Z",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "8983",
+													"path": [
+														"solr",
+														"ivrixdb",
+														"searchJob"
+													],
+													"query": [
+														{
+															"key": "action",
+															"value": "CREATE_JOB"
+														},
+														{
+															"key": "expr",
+															"value": "search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time)"
+														},
+														{
+															"key": "earliest",
+															"value": "2010-12-22T01:23:25Z"
+														},
+														{
+															"key": "latest",
+															"value": "2010-12-29T02:46:40Z"
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "WARM search",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "http://localhost:8983/solr/ivrixdb/searchJob?action=CREATE_JOB&expr=search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time)&earliest=2008-10-12T00:00:05Z&latest=2009-11-16T02:05Z",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "8983",
+													"path": [
+														"solr",
+														"ivrixdb",
+														"searchJob"
+													],
+													"query": [
+														{
+															"key": "action",
+															"value": "CREATE_JOB"
+														},
+														{
+															"key": "expr",
+															"value": "search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time)"
+														},
+														{
+															"key": "earliest",
+															"value": "2008-10-12T00:00:05Z"
+														},
+														{
+															"key": "latest",
+															"value": "2009-11-16T02:05Z"
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "COLD search",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "http://localhost:8983/solr/ivrixdb/searchJob?action=CREATE_JOB&expr=search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time)&earliest=2000-01-02T00:00:05Z&latest=2002-03-13T01:23:20Z",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "8983",
+													"path": [
+														"solr",
+														"ivrixdb",
+														"searchJob"
+													],
+													"query": [
+														{
+															"key": "action",
+															"value": "CREATE_JOB"
+														},
+														{
+															"key": "expr",
+															"value": "search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time)"
+														},
+														{
+															"key": "earliest",
+															"value": "2000-01-02T00:00:05Z"
+														},
+														{
+															"key": "latest",
+															"value": "2002-03-13T01:23:20Z"
+														}
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "Test2",
+									"item": [
+										{
+											"name": "1 Timeliner Bucket",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "http://localhost:8983/solr/ivrixdb/searchJob?action=CREATE_JOB&expr=search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time)&earliest=2010-11-01T00:00Z&latest=2010-12-01T00:00Z",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "8983",
+													"path": [
+														"solr",
+														"ivrixdb",
+														"searchJob"
+													],
+													"query": [
+														{
+															"key": "action",
+															"value": "CREATE_JOB"
+														},
+														{
+															"key": "expr",
+															"value": "search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time)"
+														},
+														{
+															"key": "earliest",
+															"value": "2010-11-01T00:00Z"
+														},
+														{
+															"key": "latest",
+															"value": "2010-12-01T00:00Z"
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "2 Timeliner Buckets",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "http://localhost:8983/solr/ivrixdb/searchJob?action=CREATE_JOB&expr=search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time)&earliest=2010-10-01T00:00Z&latest=2010-12-01T00:00Z",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "8983",
+													"path": [
+														"solr",
+														"ivrixdb",
+														"searchJob"
+													],
+													"query": [
+														{
+															"key": "action",
+															"value": "CREATE_JOB"
+														},
+														{
+															"key": "expr",
+															"value": "search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time)"
+														},
+														{
+															"key": "earliest",
+															"value": "2010-10-01T00:00Z"
+														},
+														{
+															"key": "latest",
+															"value": "2010-12-01T00:00Z"
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "4 Timeliner Buckets",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "http://localhost:8983/solr/ivrixdb/searchJob?action=CREATE_JOB&expr=search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time)&earliest=2010-08-01T00:00Z&latest=2010-12-01T00:00Z",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "8983",
+													"path": [
+														"solr",
+														"ivrixdb",
+														"searchJob"
+													],
+													"query": [
+														{
+															"key": "action",
+															"value": "CREATE_JOB"
+														},
+														{
+															"key": "expr",
+															"value": "search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time)"
+														},
+														{
+															"key": "earliest",
+															"value": "2010-08-01T00:00Z"
+														},
+														{
+															"key": "latest",
+															"value": "2010-12-01T00:00Z"
+														}
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "2A",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8983/solr/ivrixdb/searchJob?action=CREATE_JOB&expr=search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time)",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8983",
+									"path": [
+										"solr",
+										"ivrixdb",
+										"searchJob"
+									],
+									"query": [
+										{
+											"key": "action",
+											"value": "CREATE_JOB"
+										},
+										{
+											"key": "expr",
+											"value": "search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time)"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2C",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8983/solr/ivrixdb/searchJob?action=CREATE_JOB&expr=search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time)",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8983",
+									"path": [
+										"solr",
+										"ivrixdb",
+										"searchJob"
+									],
+									"query": [
+										{
+											"key": "action",
+											"value": "CREATE_JOB"
+										},
+										{
+											"key": "expr",
+											"value": "search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time)"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2D",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8983/solr/ivrixdb/searchJob?action=CREATE_JOB&expr=search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"_raw:simpson\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time)",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8983",
+									"path": [
+										"solr",
+										"ivrixdb",
+										"searchJob"
+									],
+									"query": [
+										{
+											"key": "action",
+											"value": "CREATE_JOB"
+										},
+										{
+											"key": "expr",
+											"value": "search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"_raw:simpson\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time)"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2E",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8983/solr/ivrixdb/searchJob?action=CREATE_JOB&expr=rollup(search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time),over=age,sum(random))",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8983",
+									"path": [
+										"solr",
+										"ivrixdb",
+										"searchJob"
+									],
+									"query": [
+										{
+											"key": "action",
+											"value": "CREATE_JOB"
+										},
+										{
+											"key": "expr",
+											"value": "rollup(search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time),over=age,sum(random))"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2F",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8983/solr/ivrixdb/searchJob?action=CREATE_JOB&expr=top(n=10000,search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time),sort=\"random desc\")",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8983",
+									"path": [
+										"solr",
+										"ivrixdb",
+										"searchJob"
+									],
+									"query": [
+										{
+											"key": "action",
+											"value": "CREATE_JOB"
+										},
+										{
+											"key": "expr",
+											"value": "top(n=10000,search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time),sort=\"random desc\")"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2G",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8983/solr/ivrixdb/searchJob?action=CREATE_JOB&expr=rollup(top(n=10000,search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time),sort=\"random desc\"),over=age,sum(random))",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8983",
+									"path": [
+										"solr",
+										"ivrixdb",
+										"searchJob"
+									],
+									"query": [
+										{
+											"key": "action",
+											"value": "CREATE_JOB"
+										},
+										{
+											"key": "expr",
+											"value": "rollup(top(n=10000,search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time),sort=\"random desc\"),over=age,sum(random))"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2H",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8983/solr/ivrixdb/searchJob?action=CREATE_JOB&expr=select(search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time),age,_time,_raw,weight,random,replace(age,70,withValue=1000))",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8983",
+									"path": [
+										"solr",
+										"ivrixdb",
+										"searchJob"
+									],
+									"query": [
+										{
+											"key": "action",
+											"value": "CREATE_JOB"
+										},
+										{
+											"key": "expr",
+											"value": "select(search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time),age,_time,_raw,weight,random,replace(age,70,withValue=1000))"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2I",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8983/solr/ivrixdb/searchJob?action=CREATE_JOB&expr=having(search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time),eq(age,10))",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8983",
+									"path": [
+										"solr",
+										"ivrixdb",
+										"searchJob"
+									],
+									"query": [
+										{
+											"key": "action",
+											"value": "CREATE_JOB"
+										},
+										{
+											"key": "expr",
+											"value": "having(search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time),eq(age,10))"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2J",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8983/solr/ivrixdb/searchJob?action=CREATE_JOB&expr=rollup(having(top(n=10000,select(search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"_raw:simpson\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time),age,_time,_raw,weight,random,replace(age,70,withValue=1000)),sort=\"random desc\"),eq(age,10)),over=age,sum(random))",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8983",
+									"path": [
+										"solr",
+										"ivrixdb",
+										"searchJob"
+									],
+									"query": [
+										{
+											"key": "action",
+											"value": "CREATE_JOB"
+										},
+										{
+											"key": "expr",
+											"value": "rollup(having(top(n=10000,select(search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"_raw:simpson\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time),age,_time,_raw,weight,random,replace(age,70,withValue=1000)),sort=\"random desc\"),eq(age,10)),over=age,sum(random))"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "4",
+					"item": [
+						{
+							"name": "Test 1 & 2",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8983/solr/ivrixdb/searchJob?action=CREATE_JOB&expr=search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time)&earliest=2000-01-02T00:00:05Z&latest=2000-07-20T00:00:05Z",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8983",
+									"path": [
+										"solr",
+										"ivrixdb",
+										"searchJob"
+									],
+									"query": [
+										{
+											"key": "action",
+											"value": "CREATE_JOB"
+										},
+										{
+											"key": "expr",
+											"value": "search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time)"
+										},
+										{
+											"key": "earliest",
+											"value": "2000-01-02T00:00:05Z"
+										},
+										{
+											"key": "latest",
+											"value": "2000-07-20T00:00:05Z"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "3 & 5 & 6 & 7",
+					"item": [
+						{
+							"name": "8983 - #1",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8983/solr/ivrixdb/searchJob?action=CREATE_JOB&expr=search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time)&earliest=2002-05-02T01:23:25Z&latest=2004-05-22T02:46:40Z",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8983",
+									"path": [
+										"solr",
+										"ivrixdb",
+										"searchJob"
+									],
+									"query": [
+										{
+											"key": "action",
+											"value": "CREATE_JOB"
+										},
+										{
+											"key": "expr",
+											"value": "search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time)"
+										},
+										{
+											"key": "earliest",
+											"value": "2002-05-02T01:23:25Z"
+										},
+										{
+											"key": "latest",
+											"value": "2004-05-22T02:46:40Z"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "7574 - #1",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7574/solr/ivrixdb/searchJob?action=CREATE_JOB&expr=search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time)&earliest=2004-05-23T02:46:40Z&latest=2006-05-22T02:46:40Z",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7574",
+									"path": [
+										"solr",
+										"ivrixdb",
+										"searchJob"
+									],
+									"query": [
+										{
+											"key": "action",
+											"value": "CREATE_JOB"
+										},
+										{
+											"key": "expr",
+											"value": "search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time)"
+										},
+										{
+											"key": "earliest",
+											"value": "2004-05-23T02:46:40Z"
+										},
+										{
+											"key": "latest",
+											"value": "2006-05-22T02:46:40Z"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "8983 - #2",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8983/solr/ivrixdb/searchJob?action=CREATE_JOB&expr=search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time)&earliest=2001-03-27T02:05:05Z&latest=2003-04-18T00:41:40Z",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8983",
+									"path": [
+										"solr",
+										"ivrixdb",
+										"searchJob"
+									],
+									"query": [
+										{
+											"key": "action",
+											"value": "CREATE_JOB"
+										},
+										{
+											"key": "expr",
+											"value": "search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time)"
+										},
+										{
+											"key": "earliest",
+											"value": "2001-03-27T02:05:05Z"
+										},
+										{
+											"key": "latest",
+											"value": "2003-04-18T00:41:40Z"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "7574 - #2",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7574/solr/ivrixdb/searchJob?action=CREATE_JOB&expr=search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time)&earliest=2000-01-02T00:00:05Z&latest=2002-03-13T01:23:20Z",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7574",
+									"path": [
+										"solr",
+										"ivrixdb",
+										"searchJob"
+									],
+									"query": [
+										{
+											"key": "action",
+											"value": "CREATE_JOB"
+										},
+										{
+											"key": "expr",
+											"value": "search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time)"
+										},
+										{
+											"key": "earliest",
+											"value": "2000-01-02T00:00:05Z"
+										},
+										{
+											"key": "latest",
+											"value": "2002-03-13T01:23:20Z"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "8983 - #3",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8983/solr/ivrixdb/searchJob?action=CREATE_JOB&expr=search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time)",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8983",
+									"path": [
+										"solr",
+										"ivrixdb",
+										"searchJob"
+									],
+									"query": [
+										{
+											"key": "action",
+											"value": "CREATE_JOB"
+										},
+										{
+											"key": "expr",
+											"value": "search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time)"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "7574 - #3",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7574/solr/ivrixdb/searchJob?action=CREATE_JOB&expr=search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time)",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7574",
+									"path": [
+										"solr",
+										"ivrixdb",
+										"searchJob"
+									],
+									"query": [
+										{
+											"key": "action",
+											"value": "CREATE_JOB"
+										},
+										{
+											"key": "expr",
+											"value": "search(_default,zkHost=\"localhost:9983\",ivrix=true,qt=\"/export\",q=\"*:*\",fl=\"_raw,_time,id\",sort=\"_time desc\",partitionKeys=_time)"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}

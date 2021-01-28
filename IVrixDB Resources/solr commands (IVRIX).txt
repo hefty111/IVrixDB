@@ -1,0 +1,5 @@
+
+cd C:\Users\Ivri Faitelson\Work\IVrixDB\Repos\IVrixDB\solr\bin
+solr start -c -p 8983 -s "C:\Users\Ivri Faitelson\Work\IVrixDB\Deployment\Solr\tests\node1\solr" -a "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:9000" -z localhost:9983
+solr start -c -p 7574 -s "C:\Users\Ivri Faitelson\Work\IVrixDB\Deployment\Solr\tests\node2\solr" -a "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:9100" -z localhost:9983
+solr stop -all
